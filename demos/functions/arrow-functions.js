@@ -13,7 +13,11 @@ const addArrow = ( x, y ) => {
 // If it's a one-liner, can eliminate {} and "return"
 const addArrowShort = ( x, y ) => x + y;
 
+// prettier-ignore
 const timesTwo = ( x ) => x * 2;
+
+// Probably not good for readability reasons:
+const x = ( x ) => x * x;
 
 // Multi-line returns are wrapped with parentheses, not curly braces
 // prettier-ignore
@@ -38,6 +42,13 @@ const generatePersonArrow = ( firstName, lastName ) => ( {
   firstName: firstName,
   lastName: lastName,
 } );
+
+const generatePersonArrowWithReturn = ( firstName, lastName ) => {
+  return {
+    firstName: firstName,
+    lastName: lastName,
+  };
+};
 
 const filter = ( value ) => ( value > 10 ? value : value + 10 );
 

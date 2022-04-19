@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+// import {a} from './exports.js';
+
 // Import one item; typical
 import { x } from './exports.js';
 console.log(x); // 10

@@ -4,6 +4,8 @@ const person = {
   lastName: 'Paxton',
   city: 'Nutley',
   state: 'NJ',
+
+  // Different ways to add a function
   getState() {
     return this.state;
   },
@@ -29,7 +31,29 @@ for ( const key in person ) {
   // Whatever
 }
 
+// enumerable: does this key show up in a loop?
+// configurable: can we call defineProperty() on this key?
+// writeable: can this value be changed?
+
+// eslint-disable-next-line max-len
+// More here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#description
+
+Object.keys( person )
+  .filter( ( key ) => typeof person[key] === 'function' )
+  .forEach( ( key ) => {
+    Object.defineProperty( person, key, { enumerable: false } );
+  } );
+
+Object.defineProperty( person, 'someMethod', {
+  enumerable: false,
+  value: () => console.log( 'Some method' ),
+} );
+
+// Destructuring
 const { firstName, lastName } = person;
+
+// Identifiers: $, _, or alphabetical character, followed by $, _, alphanumeric
+// $, _, $foo, _foo, foo, bar, baz, something_complicated;
 
 const state = {
   aString: '',
@@ -52,26 +76,3 @@ const state = {
 
 state['some spaces'];
 state.aString;
-
-// Identifiers: $, _, or alphabetical character, followed by $, _, alphanumeric
-// $, _, $foo, _foo, foo, bar, baz, something_complicated;
-
-const passedInConfiguration = {
-  data: cities,
-  color: 'blue',
-  onClick: 'whatever',
-  onHover: 'something Else',
-};
-const cityTable = new Table( passedInConfiguration );
-
-// In Table
-const defaults = {
-  data: [],
-  color: 'green',
-  onClick: null,
-  onHover: null,
-  columns: [],
-  otherThing: {},
-};
-
-const config = { ...defaults, ...passedInConfiguration };

@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 
+// not exported
+const q = 'queue';
+
 // Standard export
 export const x = 10;
 
